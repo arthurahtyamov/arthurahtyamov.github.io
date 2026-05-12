@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arthur Akhtyamov — Product Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF8;
+  --surface: #FFFFFF;
+  --border: #EBEBEB;
+  --text: #1A1A1A;
+  --muted: #6B6B6B;
+  --subtle: #9A9A9A;
+  --accent: #1A1A1A;
+  --tag-bg: #F2F2F0;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(250,250,248,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+nav.scrolled { border-bottom-color: var(--border); }
+.nav-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  letter-spacing: -0.3px;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 40px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.hero-inner { max-width: 720px; }
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.1s forwards;
+}
+.hero-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #34C759;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(52px, 8vw, 88px);
+  line-height: 1.0;
+  letter-spacing: -2px;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--muted);
+}
+.hero-sub {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 48px;
+  font-weight: 300;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.3s forwards;
+}
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background: var(--text);
+  color: #fff;
+}
+.btn-primary:hover { background: #333; transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { border-color: #ccc; transform: translateY(-1px); }
+
+/* SECTIONS */
+section {
+  padding: 100px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--subtle);
+  margin-bottom: 48px;
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--muted);
+  font-weight: 300;
+}
+.about-text strong { color: var(--text); font-weight: 500; }
+.about-aside { padding-top: 4px; }
+.aside-block { margin-bottom: 36px; }
+.aside-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--subtle);
+  margin-bottom: 10px;
+}
+.aside-value { font-size: 15px; color: var(--text); }
+
+/* WORK */
+.work-list { display: flex; flex-direction: column; gap: 2px; }
+.work-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.2s;
+  cursor: default;
+}
+.work-item:first-child { border-top: 1px solid var(--border); }
+.work-item:hover { padding-left: 12px; }
+.work-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+.work-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 540px;
+}
+.work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.tag {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--tag-bg);
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.work-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+.work-stat {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.work-stat-sub {
+  font-size: 11px;
+  color: var(--subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* STACK */
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+.stack-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s;
+}
+.stack-item:hover { border-color: #ccc; transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.stack-icon { font-size: 20px; margin-bottom: 8px; }
+.stack-name { font-size: 13px; font-weight: 500; }
+.stack-cat { font-size: 11px; color: var(--subtle); margin-top: 2px; }
+
+/* PROJECTS */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.project-card:hover { border-color: #ccc; transform: translateY(-3px); box-shadow: 0 8px 40px rgba(0,0,0,0.08); }
+.project-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.project-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  letter-spacing: -0.3px;
+}
+.project-arrow {
+  font-size: 18px;
+  color: var(--subtle);
+  transition: transform 0.2s;
+}
+.project-card:hover .project-arrow { transform: translate(3px, -3px); }
+.project-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.project-url {
+  font-size: 12px;
+  color: var(--subtle);
+}
+
+/* CONTACT */
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.contact-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(36px, 5vw, 56px);
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.contact-title em { font-style: italic; color: var(--muted); }
+.contact-sub { font-size: 16px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+.contact-links { display: flex; flex-direction: column; gap: 12px; }
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 15px;
+  transition: all 0.2s;
+}
+.contact-link:hover { border-color: #ccc; transform: translateX(4px); }
+.contact-link-icon { font-size: 20px; }
+.contact-link-label { flex: 1; font-weight: 500; }
+.contact-link-sub { font-size: 13px; color: var(--subtle); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--subtle);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* DIVIDER */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  section { padding: 60px 20px; }
+  .hero { padding: 100px 20px 60px; }
+  .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .work-item { grid-template-columns: 1fr; }
+  .work-meta { text-align: left; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-name">Arthur Akhtyamov</div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#stack">Stack</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="hero-dot"></span>
+      Available for new projects
+    </div>
+    <h1 class="hero-title">
+      Product<br><em>Engineer</em><br>& Builder
+    </h1>
+    <p class="hero-sub">
+      I build products end-to-end — from architecture to launch. 
+      Custom platforms, AI-powered tools, and integrations that make complex systems work together.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Get in touch</a>
+      <a href="#work" class="btn btn-secondary">See my work ↓</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm a product engineer based in <strong>Europe</strong>, working at the intersection of software development and product thinking.</p>
+      <br>
+      <p>My work spans <strong>custom platforms for business clients</strong>, AI-powered tools, and my own indie projects. I particularly enjoy automating complex workflows and integrating systems that weren't meant to talk to each other.</p>
+      <br>
+      <p>Currently building <strong>PlainlyAI</strong> — an AI-focused media publication for non-technical readers.</p>
+    </div>
+    <div class="about-aside">
+      <div class="aside-block">
+        <div class="aside-label">Location</div>
+        <div class="aside-value">Europe (UTC+1–2)</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Focus</div>
+        <div class="aside-value">Platforms · Integrations · AI products</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Languages</div>
+        <div class="aside-value">Russian (native) · English (professional)</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Currently building</div>
+        <div class="aside-value"><a href="https://plainlyai.info" target="_blank" style="color:inherit">PlainlyAI →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-label">Selected Work</div>
+  <div class="work-list">
+
+    <div class="work-item reveal">
+      <div>
+        <div class="work-name">Dealer Network PRM Platform</div>
+        <div class="work-desc">End-to-end platform for managing a national dealer network across Russia. Personal accounts, loyalty card issuance, integrated online store, warehouse management, and real-time analytics — all in one place.</div>
+        <div class="work-tags">
+          <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span>
+          <span class="tag">Telegram Bot</span><span class="tag">ERP Integration</span>
+        </div>
+      </div>
+      <div class="work-meta">
+        <div class="work-stat">1000+</div>
+        <div class="work-stat-sub">active users<br>on launch day</div>
+      </div>
+    </div>
+
+    <div class="work-item reveal">
+      <div>
+        <div class="work-name">Online Therapy Platform</div>
+        <div class="work-desc">Full-stack platform for online psychology sessions. Video calls, payment processing, psychologist matching algorithm, client onboarding via smart questionnaires, and AI-assisted session support.</div>
+        <div class="work-tags">
+          <span class="tag">Next.js</span><span class="tag">LiveKit</span><span class="tag">MariaDB</span>
+          <span class="tag">ЮKassa</span><span class="tag">VK API</span><span class="tag">AI</span>
+        </div>
+      </div>
+      <div class="work-meta">
+        <div class="work-stat">∞</div>
+        <div class="work-stat-sub">sessions<br>delivered</div>
+      </div>
+    </div>
+
+    <div class="work-item reveal">
+      <div>
+        <div class="work-name">Real-Time Analytics Dashboard</div>
+        <div class="work-desc">Multi-source analytics platform aggregating data from CRM, payment systems, and marketing tools. Live metrics, funnel analysis, UTM tracking, and automated reporting for business decision-making.</div>
+        <div class="work-tags">
+          <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">AmoCRM API</span>
+          <span class="tag">GetCourse</span><span class="tag">Real-time</span>
+        </div>
+      </div>
+      <div class="work-meta">
+        <div class="work-stat">10+</div>
+        <div class="work-stat-sub">data sources<br>integrated</div>
+      </div>
+    </div>
+
+    <div class="work-item reveal">
+      <div>
+        <div class="work-name">LMS Platform</div>
+        <div class="work-desc">Corporate learning management system with course authoring, student progress tracking, assessments, and team management. Built for internal training across distributed teams.</div>
+        <div class="work-tags">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">In Development</span>
+        </div>
+      </div>
+      <div class="work-meta">
+        <div class="work-stat">—</div>
+        <div class="work-stat-sub">in active<br>development</div>
+      </div>
+    </div>
+
+    <div class="work-item reveal">
+      <div>
+        <div class="work-name">CRM Migration & Setup</div>
+        <div class="work-desc">Full migration of business CRM infrastructure — data transfer, pipeline architecture, automation rules, and team onboarding. Zero downtime, structured handoff.</div>
+        <div class="work-tags">
+          <span class="tag">CRM</span><span class="tag">Data Migration</span><span class="tag">Automation</span><span class="tag">Integrations</span>
+        </div>
+      </div>
+      <div class="work-meta">
+        <div class="work-stat">0</div>
+        <div class="work-stat-sub">downtime<br>during migration</div>
+      </div>
+    </div>
+
+    <div class="work-item reveal">
+      <div>
+        <div class="work-name">Event Ticketing System</div>
+        <div class="work-desc">Custom ticketing platform for live events with QR-code validation, attendee management, and real-time check-in tracking. Handles thousands of tickets across multiple events.</div>
+        <div class="work-tags">
+          <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Telegram Bot</span><span class="tag">QR Codes</span>
+        </div>
+      </div>
+      <div class="work-meta">
+        <div class="work-stat">1000s</div>
+        <div class="work-stat-sub">tickets<br>processed</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="section-label">Stack</div>
+  <div class="stack-grid reveal">
+    <div class="stack-item"><div class="stack-icon">🐍</div><div class="stack-name">Python</div><div class="stack-cat">Primary language</div></div>
+    <div class="stack-item"><div class="stack-icon">⚡</div><div class="stack-name">Next.js</div><div class="stack-cat">Frontend / SSR</div></div>
+    <div class="stack-item"><div class="stack-icon">🔥</div><div class="stack-name">Flask / FastAPI</div><div class="stack-cat">Backend</div></div>
+    <div class="stack-item"><div class="stack-icon">🗄️</div><div class="stack-name">PostgreSQL</div><div class="stack-cat">Database</div></div>
+    <div class="stack-item"><div class="stack-icon">🤖</div><div class="stack-name">Claude API</div><div class="stack-cat">AI / LLM</div></div>
+    <div class="stack-item"><div class="stack-icon">✉️</div><div class="stack-name">Telegram Bot API</div><div class="stack-cat">Bots</div></div>
+    <div class="stack-item"><div class="stack-icon">🎥</div><div class="stack-name">LiveKit</div><div class="stack-cat">WebRTC / Video</div></div>
+    <div class="stack-item"><div class="stack-icon">🚂</div><div class="stack-name">Railway</div><div class="stack-cat">Deployment</div></div>
+    <div class="stack-item"><div class="stack-icon">💳</div><div class="stack-name">Payment APIs</div><div class="stack-cat">ЮKassa, Tochka</div></div>
+    <div class="stack-item"><div class="stack-icon">📊</div><div class="stack-name">CRM APIs</div><div class="stack-cat">Amo, СБИС</div></div>
+    <div class="stack-item"><div class="stack-icon">🔗</div><div class="stack-name">VK / Meta APIs</div><div class="stack-cat">Social</div></div>
+    <div class="stack-item"><div class="stack-icon">☁️</div><div class="stack-name">Supabase</div><div class="stack-cat">BaaS / Postgres</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- OWN PROJECTS -->
+<section id="projects">
+  <div class="section-label">Own Projects</div>
+  <div class="projects-grid reveal">
+    <a href="https://plainlyai.info" target="_blank" class="project-card">
+      <div class="project-header">
+        <div class="project-name">PlainlyAI</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-desc">AI-focused media publication for non-technical readers. Covers AI trends, tools, and real-world applications in plain language. Built and operated independently.</div>
+      <div class="project-tags" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">
+        <span class="tag">Media</span><span class="tag">AI Content</span><span class="tag">GitHub Actions</span>
+      </div>
+      <div class="project-url">plainlyai.info</div>
+    </a>
+    <div class="project-card" style="cursor:default">
+      <div class="project-header">
+        <div class="project-name">AI Content Assistant</div>
+        <div class="project-arrow" style="opacity:0.3">—</div>
+      </div>
+      <div class="project-desc">Telegram bot helping experts (coaches, psychologists, SMM specialists) with content creation for Instagram and TikTok. Reels scripting, carousel generation, daily planning. Paid subscription model.</div>
+      <div class="project-tags" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">
+        <span class="tag">Claude API</span><span class="tag">Telegram Bot</span><span class="tag">SaaS</span><span class="tag">PostgreSQL</span>
+      </div>
+      <div class="project-url">Telegram · private beta</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap reveal">
+    <div>
+      <div class="section-label">Contact</div>
+      <h2 class="contact-title">Let's build<br><em>something</em></h2>
+      <p class="contact-sub">Open to interesting projects, collaborations, and conversations about products worth building.</p>
+    </div>
+    <div class="contact-links">
+      <a href="https://t.me/ahtyamov_a" target="_blank" class="contact-link">
+        <span class="contact-link-icon">✈️</span>
+        <span class="contact-link-label">Telegram</span>
+        <span class="contact-link-sub">@ahtyamov_a</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<footer>
+  <span>Arthur Akhtyamov</span>
+  <span>© 2026 · Product Engineer & Indie Builder</span>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav')
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20)
+})
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal')
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80)
+      observer.unobserve(entry.target)
+    }
+  })
+}, { threshold: 0.1 })
+reveals.forEach(el => observer.observe(el))
+</script>
+</body>
+</html>
