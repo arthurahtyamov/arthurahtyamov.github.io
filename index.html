@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arthur Akhtyamov — Product Engineer & AI Builder</title>
+<title>Arthur Akhtyamov — Full-Stack Product Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
@@ -46,6 +46,15 @@ nav.scrolled{border-bottom-color:var(--border)}
 
 section{padding:100px 40px;max-width:1100px;margin:0 auto}
 .section-label{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;color:var(--subtle);margin-bottom:48px}
+
+/* WHAT I BUILD */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.service-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 22px;transition:all 0.2s}
+.service-item:hover{border-color:#ccc;transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.service-icon{font-size:22px;margin-bottom:10px}
+.service-name{font-size:14px;font-weight:600;margin-bottom:5px}
+.service-desc{font-size:13px;color:var(--muted);line-height:1.5}
+
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .about-text{font-size:18px;line-height:1.8;color:var(--muted);font-weight:300}
 .about-text strong{color:var(--text);font-weight:500}
@@ -53,6 +62,7 @@ section{padding:100px 40px;max-width:1100px;margin:0 auto}
 .aside-block{margin-bottom:32px}
 .aside-label{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--subtle);margin-bottom:8px}
 .aside-value{font-size:15px;color:var(--text)}
+
 .work-list{display:flex;flex-direction:column;gap:2px}
 .work-item{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;padding:28px 0;border-bottom:1px solid var(--border)}
 .work-item:first-child{border-top:1px solid var(--border)}
@@ -64,12 +74,14 @@ section{padding:100px 40px;max-width:1100px;margin:0 auto}
 .work-meta{text-align:right;flex-shrink:0}
 .work-stat{font-family:'DM Serif Display',serif;font-size:28px;letter-spacing:-0.5px;line-height:1;margin-bottom:4px}
 .work-stat-sub{font-size:11px;color:var(--subtle);text-transform:uppercase;letter-spacing:0.06em}
+
 .stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
 .stack-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all 0.2s}
 .stack-item:hover{border-color:#ccc;transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,0.06)}
 .stack-icon{font-size:20px;margin-bottom:8px}
 .stack-name{font-size:13px;font-weight:500}
 .stack-cat{font-size:11px;color:var(--subtle);margin-top:2px}
+
 .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .project-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all 0.2s;text-decoration:none;color:inherit;display:block}
 .project-card:hover{border-color:#ccc;transform:translateY(-3px);box-shadow:0 8px 40px rgba(0,0,0,0.08)}
@@ -79,6 +91,7 @@ section{padding:100px 40px;max-width:1100px;margin:0 auto}
 .project-card:hover .project-arrow{transform:translate(3px,-3px)}
 .project-desc{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:16px}
 .project-url{font-size:12px;color:var(--subtle)}
+
 .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .contact-title{font-family:'DM Serif Display',serif;font-size:clamp(36px,5vw,56px);letter-spacing:-1px;line-height:1.1;margin-bottom:20px}
 .contact-title em{font-style:italic;color:var(--muted)}
@@ -88,19 +101,35 @@ section{padding:100px 40px;max-width:1100px;margin:0 auto}
 .contact-link:hover{border-color:#ccc;transform:translateX(4px)}
 .contact-link-label{flex:1;font-weight:500}
 .contact-link-sub{font-size:13px;color:var(--subtle)}
+
 footer{border-top:1px solid var(--border);padding:32px 40px;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--subtle)}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
 .reveal.visible{opacity:1;transform:none}
 .divider{width:100%;height:1px;background:var(--border);max-width:1100px;margin:0 auto}
-@media(max-width:768px){nav{padding:16px 20px}.nav-links{display:none}section{padding:60px 20px}.hero{padding:100px 20px 60px}.about-grid,.contact-wrap{grid-template-columns:1fr;gap:40px}.projects-grid{grid-template-columns:1fr}.work-item{grid-template-columns:1fr}.work-meta{text-align:left}footer{flex-direction:column;gap:8px;text-align:center}}
+
+@media(max-width:768px){
+  nav{padding:16px 20px}.nav-links{display:none}
+  section{padding:60px 20px}.hero{padding:100px 20px 60px}
+  .about-grid,.contact-wrap{grid-template-columns:1fr;gap:40px}
+  .projects-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .work-item{grid-template-columns:1fr}.work-meta{text-align:left}
+  footer{flex-direction:column;gap:8px;text-align:center}
+}
+@media(max-width:480px){.services-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
 <nav id="nav">
   <div class="nav-name">Arthur Akhtyamov</div>
   <div class="nav-links">
-    <a href="#work">Work</a><a href="#stack">Stack</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+    <a href="#services">What I build</a>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -109,8 +138,12 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:1100px;mar
   <div class="hero">
     <div class="hero-inner">
       <div class="hero-eyebrow"><span class="hero-dot"></span>Available for new projects</div>
-      <h1 class="hero-title">Product Engineer<br><em>&amp; AI Builder</em></h1>
-      <p class="hero-sub">I design and ship full-stack products powered by LLM orchestration, agentic workflows, and deep system integrations — from zero to thousands of users.</p>
+      <h1 class="hero-title">
+        From idea<br>to <em>working product</em>
+      </h1>
+      <p class="hero-sub">
+        I turn business problems into software that works — platforms, integrations, automation, and AI-powered tools. Bring me a problem, I'll bring you a solution.
+      </p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Get in touch</a>
         <a href="#work" class="btn btn-secondary">See my work ↓</a>
@@ -121,17 +154,59 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:1100px;mar
 
 <div class="divider"></div>
 
+<!-- WHAT I BUILD -->
+<section id="services">
+  <div class="section-label">What I build</div>
+  <div class="services-grid reveal">
+    <div class="service-item">
+      <div class="service-icon">🏗️</div>
+      <div class="service-name">Business Platforms</div>
+      <div class="service-desc">Partner portals, dealer networks, booking systems, client cabinets — complex products built end-to-end.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">🔗</div>
+      <div class="service-name">Integrations & Automation</div>
+      <div class="service-desc">CRM, ERP, payment systems, analytics — connecting the tools your business already uses.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">📊</div>
+      <div class="service-name">Dashboards & Analytics</div>
+      <div class="service-desc">Real-time business intelligence from multiple sources. Know what's happening in your business right now.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">🤖</div>
+      <div class="service-name">Telegram Bots & Tools</div>
+      <div class="service-desc">Internal tools, customer-facing bots, automation workflows — built on the platforms your team actually uses.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">🎥</div>
+      <div class="service-name">Video & Communication</div>
+      <div class="service-desc">WebRTC video platforms, notification systems, real-time collaboration tools for your business.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">✨</div>
+      <div class="service-name">AI-Powered Features</div>
+      <div class="service-desc">Add intelligence to your existing product — matching, automation, content generation, smart assistants.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
 <section id="about">
   <div class="section-label">About</div>
   <div class="about-grid reveal">
     <div class="about-text">
-      <p>I'm a <strong>product engineer</strong> based in Europe, operating at the intersection of backend architecture, AI integration, and product thinking.</p><br>
-      <p>I build complex systems end-to-end — CRM platforms, real-time dashboards, video infrastructure, and <strong>LLM-powered products</strong>. My focus is on delivering working software that scales, not just prototypes.</p><br>
-      <p>Currently running <strong>PlainlyAI</strong> — an AI-focused media publication — and exploring agentic AI applications for business automation.</p>
+      <p>I'm a <strong>full-stack product engineer</strong> based in Europe. I work with founders, business owners, and product teams who need software built right — not just prototypes, but systems that handle real users and real money.</p>
+      <br>
+      <p>My background spans backend architecture, integrations, and product thinking. I've built platforms that went from zero to thousands of users on day one, migrated critical business infrastructure with zero downtime, and shipped AI features that actually move the needle.</p>
+      <br>
+      <p>Currently building <strong>PlainlyAI</strong> — an independent AI media publication for non-technical readers.</p>
     </div>
     <div class="about-aside">
       <div class="aside-block"><div class="aside-label">Location</div><div class="aside-value">Europe (UTC+1–2)</div></div>
-      <div class="aside-block"><div class="aside-label">Specialization</div><div class="aside-value">AI Agents · LLM Integration<br>Full-Stack Platforms · Automation</div></div>
+      <div class="aside-block"><div class="aside-label">Experience</div><div class="aside-value">Full-stack development<br>Product architecture · Integrations</div></div>
       <div class="aside-block"><div class="aside-label">Languages</div><div class="aside-value">Russian (native) · English (professional)</div></div>
       <div class="aside-block"><div class="aside-label">Currently building</div><div class="aside-value"><a href="https://plainlyai.info" target="_blank" style="color:inherit">PlainlyAI →</a></div></div>
     </div>
@@ -140,70 +215,80 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:1100px;mar
 
 <div class="divider"></div>
 
+<!-- WORK -->
 <section id="work">
   <div class="section-label">Selected Work</div>
   <div class="work-list">
+
     <div class="work-item reveal">
       <div>
         <div class="work-name">Dealer Network PRM Platform</div>
-        <div class="work-desc">Designed and shipped a full-scale Partner Relationship Management platform for a national dealer network across Russia. Unified system covering personal accounts, loyalty card issuance, integrated e-commerce, warehouse management, and real-time business analytics. Handled 1,000+ concurrent active users on launch day with zero downtime.</div>
-        <div class="work-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">Telegram Bot API</span><span class="tag">ERP Integration</span><span class="tag">Payment API</span></div>
+        <div class="work-desc">Full-scale partner relationship management platform for a national dealer network across Russia. One system covering personal accounts, loyalty cards, integrated e-commerce, warehouse management, and real-time analytics. Built to handle the entire dealer lifecycle from onboarding to reporting.</div>
+        <div class="work-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Telegram Bot</span><span class="tag">ERP Integration</span><span class="tag">Payment Processing</span></div>
       </div>
-      <div class="work-meta"><div class="work-stat">1000+</div><div class="work-stat-sub">concurrent users<br>on day one</div></div>
+      <div class="work-meta"><div class="work-stat">1000+</div><div class="work-stat-sub">active users<br>on launch day</div></div>
     </div>
+
     <div class="work-item reveal">
       <div>
-        <div class="work-name">AI-Powered Online Therapy Platform</div>
-        <div class="work-desc">End-to-end platform for online psychological sessions featuring WebRTC video infrastructure (LiveKit), integrated payment processing, and an LLM-driven psychologist matching engine. Patient questionnaires are semantically analyzed to match with specialist profiles. Claude API provides AI session support.</div>
-        <div class="work-tags"><span class="tag">Next.js</span><span class="tag">LiveKit / WebRTC</span><span class="tag">MariaDB</span><span class="tag ai">Claude API</span><span class="tag ai">LLM Matching</span><span class="tag">Payment Integration</span></div>
+        <div class="work-name">Online Therapy Platform</div>
+        <div class="work-desc">End-to-end platform for booking and conducting online psychology sessions. Integrated video calls, payment processing, smart psychologist matching, client onboarding questionnaires, and AI-assisted session support. Complete dashboards for both clients and specialists.</div>
+        <div class="work-tags"><span class="tag">Next.js</span><span class="tag">WebRTC / LiveKit</span><span class="tag">MariaDB</span><span class="tag">Payments</span><span class="tag ai">AI Matching</span></div>
       </div>
-      <div class="work-meta"><div class="work-stat">AI</div><div class="work-stat-sub">assisted<br>matching</div></div>
+      <div class="work-meta"><div class="work-stat">∞</div><div class="work-stat-sub">sessions<br>supported</div></div>
     </div>
+
     <div class="work-item reveal">
       <div>
-        <div class="work-name">AI Content Assistant — SaaS Telegram Bot</div>
-        <div class="work-desc">Multi-model content generation pipeline for experts and coaches. Agentic workflow orchestrates Claude and GPT across ideation, scripting, and validation stages. Reels scripting, carousel generation, daily content planning, conversation memory. Paid subscription with automated billing.</div>
-        <div class="work-tags"><span class="tag ai">Claude API</span><span class="tag ai">LLM Orchestration</span><span class="tag ai">Agentic Workflow</span><span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">SaaS</span></div>
+        <div class="work-name">Real-Time Analytics Dashboard</div>
+        <div class="work-desc">Centralized business intelligence platform pulling live data from CRM, payment systems, marketing tools, and course platforms. Unified view of funnels, UTM attribution, revenue, and cohort metrics — everything a business owner needs in one screen.</div>
+        <div class="work-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">CRM APIs</span><span class="tag">Real-time</span><span class="tag">Multi-source</span></div>
       </div>
-      <div class="work-meta"><div class="work-stat">100+</div><div class="work-stat-sub">paying<br>subscribers</div></div>
+      <div class="work-meta"><div class="work-stat">10+</div><div class="work-stat-sub">systems<br>connected</div></div>
     </div>
+
     <div class="work-item reveal">
       <div>
-        <div class="work-name">Real-Time Multi-Source Analytics Dashboard</div>
-        <div class="work-desc">Centralized analytics platform aggregating live data from 10+ business systems. CRM, payment gateways, marketing platforms, course management — unified into real-time funnel analysis, UTM attribution, and automated executive reporting. LLM layer generates natural language insights.</div>
-        <div class="work-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">AmoCRM API</span><span class="tag">GetCourse</span><span class="tag ai">LLM Insights</span><span class="tag">Real-time</span></div>
+        <div class="work-name">AI Content Assistant — SaaS Product</div>
+        <div class="work-desc">Subscription Telegram product for coaches and experts who sell through social media. Handles Reels scripting, carousel creation, content planning, and brand voice consistency. Pays for itself — generates content that would otherwise take hours.</div>
+        <div class="work-tags"><span class="tag ai">Claude API</span><span class="tag">Telegram Bot</span><span class="tag">PostgreSQL</span><span class="tag">Subscriptions</span></div>
       </div>
-      <div class="work-meta"><div class="work-stat">10+</div><div class="work-stat-sub">systems<br>integrated</div></div>
+      <div class="work-meta"><div class="work-stat">100+</div><div class="work-stat-sub">paying<br>users</div></div>
     </div>
+
     <div class="work-item reveal">
       <div>
         <div class="work-name">Corporate LMS Platform</div>
-        <div class="work-desc">Learning management system for distributed corporate teams. Course authoring, structured learning paths, assessments, progress analytics, and team administration. Built for scale across dozens of teams and hundreds of learners.</div>
+        <div class="work-desc">Learning management system for distributed corporate teams. Course authoring, structured learning paths, assessments, progress tracking, and team management. Designed to replace expensive off-the-shelf LMS tools with something that fits the actual business.</div>
         <div class="work-tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">In Development</span></div>
       </div>
       <div class="work-meta"><div class="work-stat">—</div><div class="work-stat-sub">in active<br>development</div></div>
     </div>
+
     <div class="work-item reveal">
       <div>
-        <div class="work-name">CRM Architecture Migration</div>
-        <div class="work-desc">Full migration of business CRM infrastructure — data transfer, pipeline redesign, automation rebuild, integration reconnection, and team onboarding. Zero operational downtime, full data integrity validation.</div>
-        <div class="work-tags"><span class="tag">CRM Architecture</span><span class="tag">Data Migration</span><span class="tag">Pipeline Automation</span></div>
+        <div class="work-name">CRM Infrastructure Migration</div>
+        <div class="work-desc">Full migration of a company's CRM infrastructure — data transfer, pipeline rebuild, automation rules, integration reconnection, team onboarding. The kind of project where one mistake means lost leads and broken processes. Zero downtime, full continuity.</div>
+        <div class="work-tags"><span class="tag">CRM Architecture</span><span class="tag">Data Migration</span><span class="tag">Automation</span><span class="tag">Integrations</span></div>
       </div>
       <div class="work-meta"><div class="work-stat">0</div><div class="work-stat-sub">downtime<br>during cutover</div></div>
     </div>
+
     <div class="work-item reveal">
       <div>
-        <div class="work-name">Event Ticketing & Check-in System</div>
-        <div class="work-desc">Custom ticketing infrastructure for live events. QR-code generation and validation, attendee management, real-time check-in tracking, event analytics. Handles thousands of tickets across multiple concurrent events.</div>
-        <div class="work-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Telegram Bot</span><span class="tag">QR Infrastructure</span></div>
+        <div class="work-name">Event Ticketing System</div>
+        <div class="work-desc">Custom ticketing and check-in infrastructure for live events. QR generation, validation, attendee management, and real-time tracking. Built for events that need reliability when hundreds of people are walking through the door.</div>
+        <div class="work-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Telegram Bot</span><span class="tag">QR Systems</span></div>
       </div>
       <div class="work-meta"><div class="work-stat">1000s</div><div class="work-stat-sub">tickets<br>processed</div></div>
     </div>
+
   </div>
 </section>
 
 <div class="divider"></div>
 
+<!-- STACK -->
 <section id="stack">
   <div class="section-label">Stack</div>
   <div class="stack-grid reveal">
@@ -211,45 +296,47 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:1100px;mar
     <div class="stack-item"><div class="stack-icon">⚡</div><div class="stack-name">Next.js</div><div class="stack-cat">Frontend / SSR</div></div>
     <div class="stack-item"><div class="stack-icon">🔥</div><div class="stack-name">Flask / FastAPI</div><div class="stack-cat">Backend APIs</div></div>
     <div class="stack-item"><div class="stack-icon">🗄️</div><div class="stack-name">PostgreSQL</div><div class="stack-cat">Primary DB</div></div>
-    <div class="stack-item"><div class="stack-icon">🤖</div><div class="stack-name">Claude API</div><div class="stack-cat">LLM / Agents</div></div>
-    <div class="stack-item"><div class="stack-icon">🧠</div><div class="stack-name">GPT-5.5</div><div class="stack-cat">LLM / Reasoning</div></div>
-    <div class="stack-item"><div class="stack-icon">🔗</div><div class="stack-name">LLM Orchestration</div><div class="stack-cat">Multi-model pipelines</div></div>
+    <div class="stack-item"><div class="stack-icon">🤖</div><div class="stack-name">Claude / GPT</div><div class="stack-cat">AI integration</div></div>
     <div class="stack-item"><div class="stack-icon">🎥</div><div class="stack-name">LiveKit</div><div class="stack-cat">WebRTC / Video</div></div>
     <div class="stack-item"><div class="stack-icon">✉️</div><div class="stack-name">Telegram Bot API</div><div class="stack-cat">Bots & automation</div></div>
     <div class="stack-item"><div class="stack-icon">🚂</div><div class="stack-name">Railway / VPS</div><div class="stack-cat">Deployment</div></div>
     <div class="stack-item"><div class="stack-icon">💳</div><div class="stack-name">Payment APIs</div><div class="stack-cat">ЮKassa · Tochka</div></div>
     <div class="stack-item"><div class="stack-icon">📊</div><div class="stack-name">CRM / ERP APIs</div><div class="stack-cat">AmoCRM · СБИС</div></div>
+    <div class="stack-item"><div class="stack-icon">🔗</div><div class="stack-name">REST / Webhooks</div><div class="stack-cat">System integration</div></div>
+    <div class="stack-item"><div class="stack-icon">☁️</div><div class="stack-name">Supabase</div><div class="stack-cat">BaaS / Postgres</div></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
+<!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">Own Projects</div>
   <div class="projects-grid reveal">
     <a href="https://plainlyai.info" target="_blank" class="project-card">
       <div class="project-header"><div class="project-name">PlainlyAI</div><div class="project-arrow">↗</div></div>
-      <div class="project-desc">AI-focused media for non-technical readers. LLMs, agents, real-world AI applications in plain language. Fully automated publishing pipeline via GitHub Actions.</div>
-      <div class="work-tags" style="margin-bottom:16px"><span class="tag">Media</span><span class="tag ai">AI Pipeline</span><span class="tag">GitHub Actions</span></div>
+      <div class="project-desc">Independent AI media publication for non-technical readers. Covers what's actually happening in AI — without the hype. Fully automated content pipeline from research to publishing.</div>
+      <div class="work-tags" style="margin-bottom:16px"><span class="tag">Media</span><span class="tag">Independent</span><span class="tag ai">AI Pipeline</span></div>
       <div class="project-url">plainlyai.info</div>
     </a>
     <div class="project-card" style="cursor:default">
       <div class="project-header"><div class="project-name">AI Content Assistant</div><div class="project-arrow" style="opacity:0.3">—</div></div>
-      <div class="project-desc">Agentic content platform for experts and coaches. Multi-model workflow across Claude and GPT. Reels scripts, carousels, content calendars. Conversation memory, paid subscriptions via Telegram.</div>
-      <div class="work-tags" style="margin-bottom:16px"><span class="tag ai">Claude API</span><span class="tag ai">Agentic AI</span><span class="tag">SaaS</span></div>
-      <div class="project-url">Telegram · private beta</div>
+      <div class="project-desc">Subscription product helping coaches and experts create social media content. Handles scripting, planning, and consistency — so they can focus on their actual work instead of content production.</div>
+      <div class="work-tags" style="margin-bottom:16px"><span class="tag">SaaS</span><span class="tag">Telegram</span><span class="tag ai">AI-powered</span></div>
+      <div class="project-url">Private beta</div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="contact-wrap reveal">
     <div>
       <div class="section-label">Contact</div>
-      <h2 class="contact-title">Let's build<br><em>something</em></h2>
-      <p class="contact-sub">Open to interesting projects, AI product collaborations, and conversations about systems worth building.</p>
+      <h2 class="contact-title">Got a problem<br>to <em>solve?</em></h2>
+      <p class="contact-sub">Bring me a business challenge — a process that needs automation, a platform that doesn't exist yet, or a system that needs to talk to other systems. Let's figure it out together.</p>
     </div>
     <div class="contact-links">
       <a href="https://t.me/ahtyamov_a" target="_blank" class="contact-link">
@@ -265,7 +352,7 @@ footer{border-top:1px solid var(--border);padding:32px 40px;max-width:1100px;mar
 
 <footer>
   <span>Arthur Akhtyamov</span>
-  <span>© 2026 · Product Engineer & AI Builder</span>
+  <span>© 2026 · Full-Stack Product Engineer</span>
 </footer>
 
 <script>
@@ -277,90 +364,58 @@ let W, H, mx = 0, my = 0, targetMx = 0, targetMy = 0
 function resize() {
   W = canvas.width = canvas.parentElement.offsetWidth
   H = canvas.height = canvas.parentElement.offsetHeight
-  mx = W / 2; my = H / 2
-  targetMx = mx; targetMy = my
+  mx = W/2; my = H/2; targetMx = mx; targetMy = my
 }
 
 function draw() {
-  ctx.clearRect(0, 0, W, H)
-
-  // Smooth mouse follow
-  mx += (targetMx - mx) * 0.04
-  my += (targetMy - my) * 0.04
-
+  ctx.clearRect(0,0,W,H)
+  mx += (targetMx-mx)*0.04
+  my += (targetMy-my)*0.04
   const CELL = 52
-  const cols = Math.ceil(W / CELL) + 2
-  const rows = Math.ceil(H / CELL) + 2
-
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      const x = i * CELL
-      const y = j * CELL
-
-      // Distance from mouse
-      const dx = x - mx
-      const dy = y - my
-      const dist = Math.sqrt(dx * dx + dy * dy)
-      const maxR = 320
-
-      // Displacement — closer = more movement
-      const strength = Math.max(0, 1 - dist / maxR)
-      const ease = strength * strength
-      const ox = dx * ease * 0.18
-      const oy = dy * ease * 0.18
-
-      const px = x + ox
-      const py = y + oy
-
-      // Dot opacity based on distance from mouse
-      const baseAlpha = 0.1
-      const hoverAlpha = 0.28
-      const alpha = baseAlpha + (hoverAlpha - baseAlpha) * ease
-
+  const cols = Math.ceil(W/CELL)+2
+  const rows = Math.ceil(H/CELL)+2
+  for(let i=0;i<cols;i++){
+    for(let j=0;j<rows;j++){
+      const x=i*CELL, y=j*CELL
+      const dx=x-mx, dy=y-my
+      const dist=Math.sqrt(dx*dx+dy*dy)
+      const strength=Math.max(0,1-dist/320)
+      const ease=strength*strength
+      const px=x+dx*ease*0.18
+      const py=y+dy*ease*0.18
+      const alpha=0.1+(0.28-0.1)*ease
       ctx.beginPath()
-      ctx.arc(px, py, 1.1, 0, Math.PI * 2)
-      ctx.fillStyle = `rgba(26,26,26,${alpha})`
+      ctx.arc(px,py,1.1,0,Math.PI*2)
+      ctx.fillStyle=`rgba(26,26,26,${alpha})`
       ctx.fill()
     }
   }
-
   requestAnimationFrame(draw)
 }
 
-canvas.parentElement.addEventListener('mousemove', e => {
-  const rect = canvas.getBoundingClientRect()
-  targetMx = e.clientX - rect.left
-  targetMy = e.clientY - rect.top
+canvas.parentElement.addEventListener('mousemove',e=>{
+  const rect=canvas.getBoundingClientRect()
+  targetMx=e.clientX-rect.left; targetMy=e.clientY-rect.top
+})
+canvas.parentElement.addEventListener('mouseleave',()=>{
+  targetMx=W/2; targetMy=-300
 })
 
-canvas.parentElement.addEventListener('mouseleave', () => {
-  targetMx = W / 2
-  targetMy = -300
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>20)
+  canvas.style.opacity=window.scrollY<canvas.parentElement.offsetHeight?'1':'0'
 })
 
-// Disable canvas interaction on scroll (mobile performance)
-let heroVisible = true
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20)
-  const heroH = canvas.parentElement.offsetHeight
-  heroVisible = window.scrollY < heroH
-  canvas.style.opacity = heroVisible ? '1' : '0'
-})
-
-const reveals = document.querySelectorAll('.reveal')
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80)
-      obs.unobserve(e.target)
-    }
+const reveals=document.querySelectorAll('.reveal')
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target)}
   })
-}, { threshold: 0.1 })
-reveals.forEach(el => obs.observe(el))
+},{threshold:0.1})
+reveals.forEach(el=>obs.observe(el))
 
-window.addEventListener('resize', resize)
-resize()
-draw()
+window.addEventListener('resize',resize)
+resize(); draw()
 </script>
 </body>
 </html>
